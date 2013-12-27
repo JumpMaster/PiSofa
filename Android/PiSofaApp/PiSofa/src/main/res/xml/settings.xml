@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:title="API IP Address"
+        android:summary="Click to change the IP address of the Pi"
+        android:key="prefIPAddress"
+        android:defaultValue="192.168.0.66"/>
+
+</PreferenceScreen>

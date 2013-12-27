@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.6.+'
+    }
+}
+apply plugin: 'android'
+
+repositories {
+    mavenCentral()
+}
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.0.0"
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 19
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:19.0.0'
+    compile files('libs/android-async-http-1.4.4.jar')
+}

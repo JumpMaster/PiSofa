@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="@dimen/activity_vertical_margin"
+              android:paddingBottom="@dimen/activity_vertical_margin"
+              tools:context=".MainActivity">
+
+    <Spinner
+        android:id="@+id/spinner_sofa_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/debug_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="@string/hello_world"/>
+
+    <Button
+        android:id="@+id/moveToUp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/button_blue"
+        style="@style/ButtonText"
+        android:text="Upright"/>
+
+    <Button
+        android:id="@+id/moveToFeet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/button_blue"
+        style="@style/ButtonText"
+        android:text="Feet Up"/>
+
+    <Button
+        android:id="@+id/moveToFlat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/button_blue"
+        style="@style/ButtonText"
+        android:text="Flat"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/manUp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_blue"
+            style="@style/ButtonText"
+            android:text="Up"/>
+
+        <Button
+            android:id="@+id/manDown"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_blue"
+            style="@style/ButtonText"
+            android:text="Down"/>
+
+    </LinearLayout>
+
+</LinearLayout>

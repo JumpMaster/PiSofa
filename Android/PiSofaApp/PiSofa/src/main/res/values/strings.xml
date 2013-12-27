@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PiSofa</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_debug">Debug</string>
+    <string name="action_parental_mode">Parental Mode</string>
+    <string name="action_crazy_mode">Crazy Mode</string>
+    <string name="hello_world">Nothing to show!</string>
+
+    <string-array name="sofa_arrays">
+        <item>All Seats</item>
+        <item>Seat 1 (Left)</item>
+        <item>Seat 2 (Middle)</item>
+        <item>Seat 3 (Right)</item>
+    </string-array>
+
+</resources>
