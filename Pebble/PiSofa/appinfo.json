@@ -1,0 +1,28 @@
+{
+    "versionLabel": "2.0.0",
+    "uuid": "69a53987-379e-4ae7-a3c2-d08e5ffe8511",
+    "appKeys": {
+        "sofa": 0,
+        "position": 1
+    },
+    "longName": "PiSofa",
+    "versionCode": 2,
+    "capabilities": [
+        ""
+    ],
+    "shortName": "PiSofa",
+    "companyName": "Kevin Cooper",
+    "watchapp": {
+        "watchface": false
+    },
+    "resources": {
+        "media": [
+            {
+                "menuIcon": true,
+                "type": "png",
+                "name": "IMAGE_ICON",
+                "file": "images/WatchPi.png"
+            }
+        ]
+    }
+}
