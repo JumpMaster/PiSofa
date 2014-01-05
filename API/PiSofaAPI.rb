@@ -56,6 +56,7 @@ class PiSofaAPI
     else
       @relay7.off
     end
+    return @relay7.off?.to_s
   end
 
   def allOff()

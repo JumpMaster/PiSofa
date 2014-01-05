@@ -113,8 +113,7 @@ class PiSofaSite < Sinatra::Base
   end
 
   get '/parentalMode' do
-    @@piSofaAPI.parentalMode
-    status 200
+    erb @@piSofaAPI.parentalMode
   end
 
   get '/crazyMode' do
@@ -131,7 +130,7 @@ class PiSofaSite < Sinatra::Base
                           @@piSofaAPI.down,@@piSofaAPI.up,
                           @@piSofaAPI.up,@@piSofaAPI.up]
     end
-    status 200
+    erb @@crazyMode.to_s
   end
 
   get '/showData' do

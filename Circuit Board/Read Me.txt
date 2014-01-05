@@ -1,0 +1,3 @@
+These files are meant to be used with Fritzing downloaded from fritzing.org
+
+Board V1 has been made and tested.  V2 will be produced once the relay circuitry has been tested.  Switch input system is the same as the V1 board except the resistors pull-down rather than pull-up.
