@@ -8,7 +8,7 @@
     "longName": "PiSofa",
     "versionCode": 2,
     "capabilities": [
-        ""
+        "configurable"
     ],
     "shortName": "PiSofa",
     "companyName": "Kevin Cooper",
