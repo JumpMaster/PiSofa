@@ -11,6 +11,7 @@ class PiSofa
     puts Gem.loaded_specs["pi_piper"].version.version
 
     @up, @down = 1, 2
+    @crazyMode = false
 
     @switchRelay = PiPiper::Pin.new(:pin => 27, :direction => :out)
     @switchRelay.on
@@ -24,52 +25,54 @@ class PiSofa
     sofa1pinUp, sofa1pinDown = 3,2
     sofa2pinUp, sofa2pinDown = 18,23
 
+    @@seatPin = [[0,1],[0,2],[1,1],[1,2],[2,1],[2,2]]
+
     after :pin => sofa0pinUp, :goes => :high do
-      @@seat[0].buttonReleased(1)
+      @@seat[@@seatPin[0][0]].buttonReleased(@@seatPin[0][1])
     end
 
     after :pin => sofa0pinUp, :goes => :low do
-      @@seat[0].buttonPressed(1)
+      @@seat[@@seatPin[0][0]].buttonPressed(@@seatPin[0][1])
     end
 
     after :pin => sofa0pinDown, :goes => :high do
-      @@seat[0].buttonReleased(2)
+      @@seat[@@seatPin[1][0]].buttonReleased(@@seatPin[1][1])
     end
 
     after :pin => sofa0pinDown, :goes => :low do
-      @@seat[0].buttonPressed(2)
+      @@seat[@@seatPin[1][0]].buttonPressed(@@seatPin[1][1])
     end
 
     after :pin => sofa1pinUp, :goes => :high do
-      @@seat[1].buttonReleased(1)
+      @@seat[@@seatPin[2][0]].buttonReleased(@@seatPin[2][1])
     end
 
     after :pin => sofa1pinUp, :goes => :low do
-      @@seat[1].buttonPressed(1)
+      @@seat[@@seatPin[2][0]].buttonPressed(@@seatPin[2][1])
     end
 
     after :pin => sofa1pinDown, :goes => :high do
-      @@seat[1].buttonReleased(2)
+      @@seat[@@seatPin[3][0]].buttonReleased(@@seatPin[3][1])
     end
 
     after :pin => sofa1pinDown, :goes => :low do
-      @@seat[1].buttonPressed(2)
+      @@seat[@@seatPin[3][0]].buttonPressed(@@seatPin[3][1])
     end
 
     after :pin => sofa2pinUp, :goes => :high do
-      @@seat[2].buttonReleased(1)
+      @@seat[@@seatPin[4][0]].buttonReleased(@@seatPin[4][1])
     end
 
     after :pin => sofa2pinUp, :goes => :low do
-      @@seat[2].buttonPressed(1)
+      @@seat[@@seatPin[4][0]].buttonPressed(@@seatPin[4][1])
     end
 
     after :pin => sofa2pinDown, :goes => :high do
-      @@seat[2].buttonReleased(2)
+      @@seat[@@seatPin[5][0]].buttonReleased(@@seatPin[5][1])
     end
 
     after :pin => sofa2pinDown, :goes => :low do
-      @@seat[2].buttonPressed(2)
+      @@seat[@@seatPin[5][0]].buttonPressed(@@seatPin[5][1])
     end
   end
 
@@ -81,28 +84,32 @@ class PiSofa
     @down
   end
 
-  def parentalMode
+  def toggleParentalMode
     @switchRelay.read
     if (@switchRelay.off?)
       @switchRelay.on
     else
       @switchRelay.off
     end
+  end
+
+  def isParentalMode
+    @switchRelay.read
     return @switchRelay.off?.to_s
   end
 
   def stopAll
-    3.times do |i|
-      if @@seat[i].isMoving()
-        @@seat[i].stopMoving()
+    @@seat.each do |seat|
+      if seat.isMoving()
+        seat.stopMoving()
       end
     end
   end
 
   def getPositions
     returnValue = ""
-    3.times do |i|
-      position = @@seat[i].getPosition()
+    @@seat.each_with_index do |seat, i|
+      position = seat.getPosition()
       returnValue += "Sofa#{i+1} = #{position}\n"
     end
 
@@ -111,8 +118,8 @@ class PiSofa
 
   def moveToUp(id)
     if id == 0
-      3.times do |i|
-        @@seat[i].moveToUp()
+      @@seat.each do |seat|
+        seat.moveToUp()
       end
     else
       @@seat[id-1].moveToUp()
@@ -121,8 +128,8 @@ class PiSofa
 
   def moveToFeet(id)
     if id == 0
-      3.times do |i|
-        @@seat[i].moveToFeet()
+      @@seat.each do |seat|
+        seat.moveToFeet()
       end
     else
       @@seat[id-1].moveToFeet()
@@ -131,8 +138,8 @@ class PiSofa
 
   def moveToFlat(id)
     if id == 0
-      3.times do |i|
-        @@seat[i].moveToFlat()
+      @@seat.each do |seat|
+        seat.moveToFlat()
       end
     else
       @@seat[id-1].moveToFlat()
@@ -141,8 +148,8 @@ class PiSofa
 
   def startManualMove(id, direction)
     if id == 0
-      3.times do |i|
-        @@seat[i].startMoving(direction)
+      @@seat.each do |seat|
+        seat.startMoving(direction)
       end
     else
       @@seat[id-1].startMoving(direction)
@@ -151,11 +158,26 @@ class PiSofa
 
   def stopManualMove(id)
     if id == 0
-      3.times do |i|
-        @@seat[i].stopMoving()
+      @@seat.each do |seat|
+        seat.stopMoving()
       end
     else
       @@seat[id-1].stopMoving()
     end
+  end
+
+  def toggleCrazyMode
+    @crazyMode = !@crazyMode
+
+    if @crazyMode
+      @@seatPin = @@seatPin.shuffle
+      @@seatPin = @@seatPin.shuffle
+    else
+      @@seatPin = @@seatPin.sort
+    end
+  end
+
+  def isCrazyMode
+    @crazyMode
   end
 end

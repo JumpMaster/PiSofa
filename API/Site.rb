@@ -39,24 +39,21 @@ class PiSofaSite < Sinatra::Base
   end
 
   get '/parentalMode' do
-    erb @@piSofa.parentalMode
+    @@piSofa.toggleParentalMode
+    erb @@piSofa.isParentalMode.to_s
+  end
+
+  get '/isParentalMode' do
+    erb @@piSofa.isParentalMode.to_s
   end
 
   get '/crazyMode' do
-    if @@crazyMode
-      @@crazyMode = false
-      @@seatId = [0,0,1,1,2,2]
-    @@direction = [     @@piSofaAPI.up,@@piSofaAPI.down,
-                        @@piSofaAPI.up,@@piSofaAPI.down,
-                        @@piSofaAPI.up,@@piSofaAPI.down]
-    else
-      @@crazyMode = true
-      @@seatId = [1,2,0,2,1,0]
-      @@direction = [     @@piSofaAPI.down,@@piSofaAPI.down,
-                          @@piSofaAPI.down,@@piSofaAPI.up,
-                          @@piSofaAPI.up,@@piSofaAPI.up]
-    end
-    erb @@crazyMode.to_s
+    @@piSofa.toggleCrazyMode
+    erb @@piSofa.isCrazyMode.to_s
+  end
+
+  get '/isCrazyMode' do
+    erb @@piSofa.isCrazyMode.to_s
   end
 
   get '/showData' do
