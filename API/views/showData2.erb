@@ -1,0 +1,30 @@
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js" ></script>
+<script type="text/javascript">
+ready = true;
+function updateClass(url){
+if (ready != true) { return; }
+    ready = false;
+    $.ajax({
+        url: url,
+        dataType: "HTML",
+        error: function(msg){
+            //alert(msg.statusText);
+            return msg;
+        },
+        success: function(html){
+            document.getElementById("kevtest").innerHTML = html;
+            ready=true;
+        }
+    });
+}
+
+window.setInterval(function(){
+  /// call your function here
+updateClass("/showData");
+}, 100);
+
+</script>
+<body>
+<div id="kevtest" />
+</body>
+

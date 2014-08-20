@@ -1,2 +1,2 @@
-require './PiSofaSite.rb'
+require './Site.rb'
 run PiSofaSite
