@@ -1,32 +1,35 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_debug"
         android:title="@string/action_debug"
         android:orderInCategory="100"
-        android:showAsAction="never"/>
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_stop_all"
         android:title="STOP ALL"
-        android:icon="@drawable/ic_menu_stop"
-        android:showAsAction="always"/>
+        android:icon="@drawable/ic_highlight_remove_white_48dp"
+        app:showAsAction="always"/>
 
     <item
         android:id="@+id/action_parental_mode"
         android:title="@string/action_parental_mode"
+        android:checkable="true"
         android:orderInCategory="100"
-        android:showAsAction="never"/>
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_crazy_mode"
         android:title="@string/action_crazy_mode"
+        android:checkable="true"
         android:orderInCategory="100"
-        android:showAsAction="never"/>
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"
-        android:showAsAction="never"/>
+        app:showAsAction="never"/>
 </menu>

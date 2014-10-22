@@ -3,11 +3,19 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              tools:context=".MainActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
               android:paddingLeft="@dimen/activity_horizontal_margin"
               android:paddingRight="@dimen/activity_horizontal_margin"
               android:paddingTop="@dimen/activity_vertical_margin"
               android:paddingBottom="@dimen/activity_vertical_margin"
-              tools:context=".MainActivity">
+              android:orientation="vertical">
+
 
     <Spinner
         android:id="@+id/spinner_sofa_selector"
@@ -26,7 +34,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@drawable/button_blue"
         style="@style/ButtonText"
         android:text="Upright"/>
 
@@ -35,7 +42,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@drawable/button_blue"
         style="@style/ButtonText"
         android:text="Feet Up"/>
 
@@ -44,7 +50,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@drawable/button_blue"
         style="@style/ButtonText"
         android:text="Flat"/>
 
@@ -59,7 +64,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/button_blue"
             style="@style/ButtonText"
             android:text="Up"/>
 
@@ -68,10 +72,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/button_blue"
             style="@style/ButtonText"
             android:text="Down"/>
 
     </LinearLayout>
 
 </LinearLayout>
+    </LinearLayout>

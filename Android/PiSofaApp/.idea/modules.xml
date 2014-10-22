@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PiSofa/PiSofa.iml" filepath="$PROJECT_DIR$/PiSofa/PiSofa.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PiSofa.iml" filepath="$PROJECT_DIR$/PiSofa.iml" />
       <module fileurl="file://$PROJECT_DIR$/PiSofaApp.iml" filepath="$PROJECT_DIR$/PiSofaApp.iml" />
     </modules>
   </component>

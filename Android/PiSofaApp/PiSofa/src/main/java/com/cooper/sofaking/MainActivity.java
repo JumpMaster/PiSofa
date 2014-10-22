@@ -1,11 +1,12 @@
 package com.cooper.sofaking;
 
-import android.app.Activity;
 import com.loopj.android.http.*;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -16,11 +17,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.apache.http.Header;
-import org.apache.http.client.HttpResponseException;
 
-public class MainActivity extends Activity
+public class MainActivity extends ActionBarActivity
 {
-
     TextView tvDebug;
     Spinner spSofaSelector;
     Button butMoveToUp;
@@ -28,9 +27,9 @@ public class MainActivity extends Activity
     Button butMoveToFlat;
     Button butManUp;
     Button butManDown;
-    private String DEBUG_TAG = "sofaKing";
     private static final int RESULT_SETTINGS = 1;
     private AsyncHttpClient client = new AsyncHttpClient();
+    Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,6 +40,11 @@ public class MainActivity extends Activity
                 .getDefaultSharedPreferences(this);
 
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
 
         tvDebug = (TextView) findViewById(R.id.debug_text_view);
         spSofaSelector = (Spinner) findViewById(R.id.spinner_sofa_selector);
@@ -67,6 +71,11 @@ public class MainActivity extends Activity
     {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        downloadWebPage(getBaseURL() + "/isParentalMode");
+        downloadWebPage(getBaseURL() + "/isCrazyMode");
+
+        this.menu = menu;
         return true;
     }
 
@@ -182,13 +191,27 @@ public class MainActivity extends Activity
         }
     };
 
-    private void downloadWebPage(String url)
+    private void downloadWebPage(final String url)
     {
         client.get(url, new AsyncHttpResponseHandler() {
-
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                tvDebug.setText(String.valueOf(statusCode) + "\n" + new String(responseBody));
+                String response = new String(responseBody);
+                tvDebug.setText(String.valueOf(statusCode) + "\n" + response);
+
+                if (menu != null)
+                {
+                    if (url.toLowerCase().contains("crazymode"))
+                    {
+                        MenuItem item = menu.findItem(R.id.action_crazy_mode);
+                        item.setChecked(Boolean.parseBoolean(response));
+                    }
+                    else if (url.toLowerCase().contains("parentalmode"))
+                    {
+                        MenuItem item = menu.findItem(R.id.action_parental_mode);
+                        item.setChecked(Boolean.parseBoolean(response));
+                    }
+                }
             }
 
             @Override
